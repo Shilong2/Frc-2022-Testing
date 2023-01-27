@@ -25,8 +25,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.VideoSource;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
 
@@ -63,7 +61,7 @@ public class Robot extends TimedRobot {
   double autoStart = 0;
   boolean goForAuto = false;
 
-  /*
+  
   UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
   MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 6711);
 
@@ -74,7 +72,7 @@ public class Robot extends TimedRobot {
   CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
   MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1182);
   mjpegServer2.setSource(outputStream);
-  */
+  
 
 
   @Override
