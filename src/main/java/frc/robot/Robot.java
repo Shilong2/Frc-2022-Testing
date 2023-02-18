@@ -20,14 +20,11 @@ import com.ctre.phoenix.motorcontrol.*;
 
 //Shilong adds
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer; 
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.VideoSource;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
-import edu.wpi.first.cscore.MjpegServer;
-import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.Timer;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSource;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -61,18 +58,7 @@ public class Robot extends TimedRobot {
   double autoStart = 0;
   boolean goForAuto = false;
 
-  
-  UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-  MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 6711);
-
-  mjpegServer1.setSource(usbCamera);
-  CvSink cvSink = new CvSink("opencv_USB Camera 0");
-  cvSink.setSource(usbCamera);
-
-  CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
-  MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1182);
-  mjpegServer2.setSource(outputStream);
-  
+  private UsbCamera m_camera;
 
 
   @Override
@@ -81,7 +67,9 @@ public class Robot extends TimedRobot {
     // m_chooser.addOption("My Auto", kCustomAuto);
     // SmartDashboard.putData("Auto choices", m_chooser);
     left.setInverted(true);
-  }
+    m_camera = CameraServer.startAutomaticCapture();
+    m_camera.setFPS(30);
+    m_camera.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);  }
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
